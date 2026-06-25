@@ -27,14 +27,38 @@ function Contact() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    const message = `
+  Hotel Booking Inquiry
+  
+  Name: ${formData.name}
+  Email: ${formData.email}
+  Phone: ${formData.phone}
+  
+  Message:
+  ${formData.message}
+  `;
+  
+    window.open(
+      `https://wa.me/918817149028?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  
     setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', message: '' });
+  
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+    });
+  
     setTimeout(() => setSubmitted(false), 4000);
   };
-
+  
   const contactInfo = [
     {
       icon: (
@@ -44,7 +68,7 @@ function Contact() {
         </svg>
       ),
       label: 'Address',
-      value: 'Sheesh Mahal Road, Vijay Nagar, Indore, MP 452010',
+      value: '7, Naliya Bakhal, Bharat Marg, Behind Kanch Mandir, Indore, Madhya Pradesh 452002',
     },
     {
       icon: (
@@ -54,7 +78,7 @@ function Contact() {
       ),
       label: 'Phone',
       value: '+91 88171 49028',
-      href: 'tel:+91 88171 49028',
+      href: 'tel:+918817149028',
     },
     {
       icon: (
@@ -117,12 +141,12 @@ function Contact() {
             </div>
 
             <div className="mt-10 overflow-hidden rounded-sm">
-              <iframe
-                title="Hotel Lakshya Sheesh Mahal location"
-                src="https://maps.google.com/maps?q=Vijay+Nagar+Indore&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                className="h-64 w-full border-0 grayscale transition-all duration-500 hover:grayscale-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+            <iframe
+            title="Hotel Lakshya Sheesh Mahal location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.3086314528514!2d75.8464234761591!3d22.716767227669422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd00476dd505%3A0xc23f53bb9c24cbc8!2sHotel%20Lakshya%20Sheesh%20Mahal%20Indore!5e0!3m2!1sen!2sin!4v1782380670973!5m2!1sen!2sin"
+            className="h-64 w-full border-0 grayscale transition-all duration-500 hover:grayscale-0"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
           </div>
@@ -199,12 +223,12 @@ function Contact() {
               type="submit"
               className="mt-8 w-full rounded-sm bg-navy-900 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-all hover:bg-navy-800 hover:shadow-lg hover:shadow-navy-900/20 sm:w-auto"
             >
-              Send Message
+              Send via WhatsApp
             </button>
 
             {submitted && (
               <p className="mt-4 text-sm font-medium text-gold-600 animate-fade-up">
-                Thank you! We will get back to you shortly.
+              Redirecting you to WhatsApp...
               </p>
             )}
           </form>
